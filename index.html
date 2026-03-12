@@ -6,11 +6,24 @@ layout: default
     <span class="site-title">{{ site.title }}</span>
   </header>
   <ul class="post-list">
-    {% for post in site.posts %}
+    {% assign pinned = site.posts | where: "pinned", true %}
+    {% assign unpinned = site.posts | where_exp: "post", "post.pinned != true" %}
+    {% for post in pinned %}
+    <li>
+      <a href="{{ post.url | relative_url }}" class="post-link">
+        <span class="post-link-title">
+          <svg class="pin-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v6l-2 4v2h10v-2l-2 -4v-6" /><path d="M12 16l0 5" /><path d="M8 4l8 0" /></svg>
+          {{ post.title }}
+        </span>
+        <span class="post-link-year">{{ post.date | date: "%m.%d.%Y" }}</span>
+      </a>
+    </li>
+    {% endfor %}
+    {% for post in unpinned %}
     <li>
       <a href="{{ post.url | relative_url }}" class="post-link">
         <span class="post-link-title">{{ post.title }}</span>
-        <span class="post-link-year">{{ post.date | date: "%Y" }}</span>
+        <span class="post-link-year">{{ post.date | date: "%m.%d.%Y" }}</span>
       </a>
     </li>
     {% endfor %}
