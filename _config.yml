@@ -1,0 +1,14 @@
+title: Brian's Blog
+description: Thoughts on tech, home, and everything in between
+url: ""
+baseurl: ""
+permalink: /:title/
+
+markdown: kramdown
+plugins:
+  - jekyll-feed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md

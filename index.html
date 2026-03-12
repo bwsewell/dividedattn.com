@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<div class="home">
+  <header class="site-header">
+    <span class="site-title">{{ site.title }}</span>
+  </header>
+  <ul class="post-list">
+    {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}" class="post-link">
+        <span class="post-link-title">{{ post.title }}</span>
+        <span class="post-link-year">{{ post.date | date: "%Y" }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
