@@ -15,6 +15,9 @@
     <header class="post-header">
       <a href="{{ '/' | relative_url }}" class="back-link">&larr; Back</a>
       <h1 class="post-title">{{ page.title }}</h1>
+      {% if page.subtitle %}
+      <h2 class="post-subtitle">{{ page.subtitle }}</h2>
+      {% endif %}
       <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
         {{ page.date | date: "%B %-d, %Y" }}
       </time>
