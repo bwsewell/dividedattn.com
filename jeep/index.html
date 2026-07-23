@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>TOPSIDE — a top-off forecast app for Jeep owners (concept)</title>
+<style>
+  :root {
+    --bg: #17191a;
+    --bg2: #1d2021;
+    --card: #232728;
+    --card2: #2a2f30;
+    --line: rgba(244, 241, 230, 0.10);
+    --ink: #f2efe6;
+    --muted: #9aa09a;
+    --faint: #6f746f;
+    --accent: #f0b429;
+    --go: #f0b429;
+    --caution: #e08a3c;
+    --stop: #c4554d;
+    --glass: #9fb4b8;
+    font-size: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Inter, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.4;
+  }
+  ::selection { background: var(--accent); color: #17191a; }
+
+  .kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.66rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* ---------- page chrome ---------- */
+  .hero {
+    position: relative;
+    padding: 4.5rem 1.5rem 3rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(1200px 500px at 50% -200px, rgba(240, 180, 41, 0.08), transparent 70%),
+      var(--bg);
+  }
+  .hero .topo {
+    position: absolute; inset: 0;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    font-weight: 200;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+    margin: 1rem 0 0.6rem;
+    position: relative;
+  }
+  .hero h1 b { font-weight: 600; color: var(--accent); }
+  .hero p.sub {
+    position: relative;
+    color: var(--muted);
+    max-width: 34rem;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+  .hero .badge {
+    position: relative;
+    display: inline-block;
+    margin-top: 1.4rem;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+    align-items: start;
+  }
+  @media (max-width: 980px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- mockup lab (controls) ---------- */
+  .lab {
+    position: sticky;
+    top: 1rem;
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 1.4rem 1.3rem 1.6rem;
+  }
+  @media (max-width: 980px) { .lab { position: static; } }
+  .lab h2 {
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+  }
+  .lab .hint { font-size: 0.78rem; color: var(--faint); margin-bottom: 1.2rem; font-weight: 300; }
+  .lab section { border-top: 1px solid var(--line); padding: 1.1rem 0 0.9rem; }
+  .lab section h3 {
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; margin-bottom: 0.9rem;
+  }
+  .ctl { margin-bottom: 0.9rem; }
+  .ctl label {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 0.78rem; color: var(--ink); margin-bottom: 0.35rem; font-weight: 400;
+  }
+  .ctl label output { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 600; }
+  input[type="range"] {
+    width: 100%; appearance: none; -webkit-appearance: none;
+    height: 3px; border-radius: 2px;
+    background: linear-gradient(to right, var(--accent) var(--fill, 50%), rgba(244,241,230,0.15) var(--fill, 50%));
+    outline: none; cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none; -webkit-appearance: none;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--ink); border: 3px solid var(--bg2);
+    box-shadow: 0 0 0 1px rgba(244,241,230,0.3);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--ink); border: 2px solid var(--bg2);
+    box-shadow: 0 0 0 1px rgba(244,241,230,0.3);
+  }
+  input[type="text"] {
+    width: 100%; background: var(--card); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 10px;
+    padding: 0.5rem 0.7rem; font-size: 0.85rem; font-family: inherit;
+  }
+  input[type="text"]:focus { outline: none; border-color: var(--accent); }
+
+  .presets { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .presets button {
+    background: var(--card); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 999px;
+    font-size: 0.68rem; letter-spacing: 0.06em;
+    padding: 0.42rem 0.75rem; cursor: pointer; font-family: inherit;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .presets button:hover { border-color: var(--accent); color: var(--accent); }
+
+  .swatches { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .swatch {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid transparent; outline: 1px solid rgba(244,241,230,0.2);
+    outline-offset: 2px; cursor: pointer; padding: 0;
+  }
+  .swatch[aria-pressed="true"] { outline: 2px solid var(--accent); }
+  .seg { display: flex; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+  .seg button {
+    flex: 1; border: 0; background: transparent; color: var(--muted);
+    font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.42rem 0.4rem; border-radius: 999px; cursor: pointer; font-family: inherit; font-weight: 600;
+  }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: #17191a; }
+  .subctl { margin-top: 0.8rem; }
+  .subctl .mini { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.5rem; }
+
+  /* ---------- gallery ---------- */
+  .gallery h2, .widgets-block h2 {
+    font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; margin: 0 0 1.4rem 0.2rem;
+  }
+  .phones {
+    display: flex; flex-wrap: wrap; gap: 2.2rem;
+    justify-content: flex-start;
+  }
+  @media (max-width: 980px) { .phones { justify-content: center; } }
+
+  .phone-wrap { text-align: center; }
+  .phone-wrap .caption { margin-top: 1rem; }
+  .phone-wrap .caption .name { font-size: 0.86rem; font-weight: 600; letter-spacing: 0.04em; }
+  .phone-wrap .caption .desc { font-size: 0.74rem; color: var(--faint); font-weight: 300; max-width: 300px; margin: 0.2rem auto 0; }
+
+  .phone {
+    width: 322px; border-radius: 56px;
+    background: #060707;
+    padding: 11px;
+    box-shadow:
+      inset 0 0 0 2px #2e3233,
+      0 30px 60px -20px rgba(0,0,0,0.7),
+      0 8px 20px rgba(0,0,0,0.4);
+    text-align: left;
+  }
+  .screen {
+    position: relative;
+    border-radius: 45px;
+    height: 654px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #212627 0%, #191d1e 55%, #15181a 100%);
+    display: flex; flex-direction: column;
+  }
+  .screen.night { background: linear-gradient(180deg, #14181f 0%, #10131a 60%, #0d1016 100%); }
+  .island {
+    position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
+    width: 108px; height: 30px; border-radius: 18px; background: #000; z-index: 5;
+  }
+  .statusbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 26px 4px; font-size: 0.78rem; font-weight: 600; z-index: 4;
+  }
+  .statusbar .icons { display: flex; align-items: center; gap: 5px; }
+  .statusbar svg { display: block; }
+
+  .app {
+    flex: 1; display: flex; flex-direction: column;
+    padding: 10px 20px 0; overflow: hidden;
+  }
+  .app-head { margin: 6px 2px 0; }
+  .app-head .loc {
+    font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+  }
+  .app-head .title { font-size: 1.5rem; font-weight: 250; letter-spacing: 0.02em; margin-top: 0.1rem; }
+
+  .tabbar {
+    display: flex; justify-content: space-around; align-items: center;
+    border-top: 1px solid var(--line);
+    padding: 10px 8px 22px;
+    background: rgba(10, 12, 12, 0.4);
+    backdrop-filter: blur(6px);
+  }
+  .tabbar .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--faint); }
+  .tabbar .tab.on { color: var(--accent); }
+  .tabbar .tab span { font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; }
+
+  /* today screen */
+  .dial-row { display: flex; align-items: center; justify-content: center; margin-top: 10px; }
+  .verdict-pill {
+    align-self: center; margin-top: 6px;
+    font-size: 0.66rem; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 700;
+    padding: 0.5rem 1.1rem 0.44rem; border-radius: 999px;
+    border: 1px solid currentColor;
+  }
+  .verdict-note { text-align: center; font-size: 0.72rem; color: var(--muted); margin-top: 8px; font-weight: 300; padding: 0 10px; }
+  .jeep-stage { margin: 4px -6px 0; }
+  .cond-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+    margin-top: 2px; padding-top: 12px; padding-bottom: 8px;
+  }
+  .cond { text-align: center; }
+  .cond .v { font-size: 1.05rem; font-weight: 300; font-variant-numeric: tabular-nums; }
+  .cond .v small { font-size: 0.6em; color: var(--muted); }
+  .cond .k { font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); margin-top: 2px; font-weight: 600; }
+
+  /* forecast screen */
+  .fc-list { margin-top: 12px; flex: 1; overflow: hidden; }
+  .fc-row {
+    display: grid; grid-template-columns: 2.6rem 1fr auto auto;
+    align-items: center; gap: 10px;
+    padding: 9px 6px; border-radius: 14px;
+  }
+  .fc-row + .fc-row { border-top: 1px solid rgba(244,241,230,0.05); }
+  .fc-row.wknd { background: rgba(240, 180, 41, 0.07); border-top: 0; margin-top: 1px; }
+  .fc-row .d { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+  .fc-row.wknd .d { color: var(--accent); }
+  .fc-row .hl { font-size: 0.82rem; font-variant-numeric: tabular-nums; font-weight: 300; }
+  .fc-row .hl small { color: var(--faint); }
+  .fc-row .pp { font-size: 0.68rem; color: var(--glass); display: flex; align-items: center; gap: 3px; font-variant-numeric: tabular-nums; }
+  .score-chip {
+    min-width: 2.1rem; text-align: center;
+    font-size: 0.78rem; font-weight: 700; font-variant-numeric: tabular-nums;
+    padding: 0.28rem 0.4rem; border-radius: 9px;
+    color: #17191a;
+  }
+  .fc-best {
+    margin: 6px 0 10px; padding: 10px 14px;
+    border: 1px solid var(--line); border-radius: 14px;
+    font-size: 0.72rem; color: var(--muted); font-weight: 300;
+  }
+  .fc-best b { color: var(--accent); font-weight: 600; }
+
+  /* overnight screen */
+  .on-verdict { text-align: center; margin-top: 14px; }
+  .on-verdict .big { font-size: 1.7rem; font-weight: 200; letter-spacing: 0.04em; }
+  .on-verdict .tag {
+    display: inline-block; margin-top: 8px;
+    font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700;
+    padding: 0.45rem 1rem 0.4rem; border-radius: 999px; border: 1px solid currentColor;
+  }
+  .gauge-block { margin-top: 18px; padding: 14px 12px 6px; background: rgba(0,0,0,0.18); border: 1px solid var(--line); border-radius: 18px; }
+  .gauge-block .mini { font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); font-weight: 600; margin-bottom: 10px; }
+  .spread-note { margin-top: 12px; font-size: 0.74rem; color: var(--muted); font-weight: 300; text-align: center; padding: 0 6px; }
+  .spread-note b { color: var(--ink); font-weight: 600; }
+  .on-rows { margin-top: 14px; border-top: 1px solid var(--line); }
+  .on-row { display: flex; justify-content: space-between; padding: 9px 4px; border-bottom: 1px solid rgba(244,241,230,0.05); font-size: 0.78rem; }
+  .on-row .k { color: var(--faint); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; align-self: center; }
+  .on-row .v { font-variant-numeric: tabular-nums; font-weight: 300; }
+
+  /* garage screen */
+  .garage-stage { margin: 8px -8px 0; }
+  .garage-name { text-align: center; margin-top: 2px; }
+  .garage-name .yr { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .garage-name .model { font-size: 1.25rem; font-weight: 250; margin-top: 2px; }
+  .g-section { margin-top: 14px; }
+  .g-section .mini { font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); font-weight: 600; margin-bottom: 8px; }
+  .g-section .swatches { gap: 0.55rem; }
+  .g-section .swatch { width: 30px; height: 30px; }
+
+  /* ---------- widgets ---------- */
+  .widgets-block { margin-top: 4rem; }
+  .widget-shelf {
+    position: relative;
+    border-radius: 28px;
+    border: 1px solid var(--line);
+    padding: 3rem 2rem;
+    display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: center;
+    background:
+      radial-gradient(800px 400px at 20% 0%, rgba(240,180,41,0.10), transparent 60%),
+      radial-gradient(700px 500px at 90% 100%, rgba(90, 120, 110, 0.18), transparent 60%),
+      var(--bg2);
+    overflow: hidden;
+  }
+  .widget-shelf .topo { position: absolute; inset: 0; opacity: 0.16; pointer-events: none; }
+  .widget-col { position: relative; text-align: center; }
+  .widget-col .wcap { margin-top: 0.8rem; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); font-weight: 600; }
+
+  .widget {
+    border-radius: 24px;
+    background: linear-gradient(160deg, #262b2c, #1b1f20);
+    border: 1px solid rgba(244,241,230,0.12);
+    box-shadow: 0 18px 36px -18px rgba(0,0,0,0.8);
+    text-align: left;
+    overflow: hidden;
+  }
+  .widget.small { width: 158px; height: 158px; padding: 14px 15px; display: flex; flex-direction: column; }
+  .widget.medium { width: 338px; height: 158px; padding: 14px 17px; display: flex; flex-direction: column; }
+  .widget .w-app { font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .widget .w-verdict { font-size: 0.92rem; font-weight: 600; letter-spacing: 0.01em; margin-top: 1px; }
+  .widget.small .w-score { font-size: 2.6rem; font-weight: 200; line-height: 1; margin-top: auto; }
+  .widget.small .w-sub { font-size: 0.58rem; color: var(--muted); margin-top: 2px; font-weight: 400; }
+  .widget .w-days { display: flex; margin-top: auto; gap: 6px; }
+  .widget .w-day { flex: 1; text-align: center; background: rgba(0,0,0,0.22); border-radius: 12px; padding: 7px 2px 6px; }
+  .widget .w-day .d { font-size: 0.5rem; letter-spacing: 0.12em; color: var(--faint); text-transform: uppercase; font-weight: 700; }
+  .widget .w-day .s { font-size: 0.92rem; font-weight: 600; margin-top: 1px; font-variant-numeric: tabular-nums; }
+  .widget .w-day .t { font-size: 0.55rem; color: var(--muted); margin-top: 1px; font-variant-numeric: tabular-nums; }
+  .widget.circular {
+    width: 84px; height: 84px; border-radius: 50%;
+    background: rgba(180, 185, 180, 0.16);
+    border: 0; box-shadow: none;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .lock-strip {
+    width: 220px; border-radius: 22px; padding: 1.1rem 1rem 1.3rem;
+    background: linear-gradient(180deg, rgba(30,36,40,0.85), rgba(16,20,24,0.85));
+    border: 1px solid rgba(244,241,230,0.1);
+    text-align: center;
+  }
+  .lock-strip .lk-time { font-size: 2.6rem; font-weight: 200; line-height: 1.05; }
+  .lock-strip .lk-date { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 0.7rem; }
+  .lock-strip .lk-widgets { display: flex; justify-content: center; gap: 10px; margin-top: 0.9rem; }
+  .lock-inline {
+    font-size: 0.6rem; color: var(--ink); background: rgba(180,185,180,0.14);
+    padding: 0.45rem 0.7rem; border-radius: 12px; font-weight: 500;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 2.5rem 1.5rem 3.5rem;
+    text-align: center;
+    color: var(--faint);
+    font-size: 0.74rem;
+    font-weight: 300;
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="topo" viewBox="0 0 1400 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#f2efe6" stroke-opacity="0.12" stroke-width="1">
+      <path d="M-50,300 C150,220 300,340 520,270 S900,180 1100,260 S1350,240 1460,190"/>
+      <path d="M-50,330 C160,250 320,370 540,300 S920,210 1120,290 S1360,270 1460,220"/>
+      <path d="M-50,360 C170,285 340,400 560,330 S940,245 1140,320 S1370,300 1460,255"/>
+      <path d="M-50,180 C120,120 340,200 560,140 S880,60 1120,140 S1340,120 1460,80"/>
+      <path d="M-50,145 C130,90 350,165 570,108 S890,30 1130,108 S1350,90 1460,50"/>
+      <path d="M200,60 C300,30 420,80 520,50" />
+      <path d="M900,380 C1000,350 1120,400 1220,370" />
+    </g>
+  </svg>
+  <div class="kicker">Concept mockup · iOS</div>
+  <h1>TOP<b>SIDE</b></h1>
+  <p class="sub">A daily go / no-go forecast for Jeep owners: should the top come off today — and can it stay off overnight?</p>
+  <span class="badge">1999 Wrangler TJ · Forest Green · No live data — all parameters simulated below</span>
+</header>
+
+<div class="layout">
+
+  <!-- ============ MOCKUP LAB ============ -->
+  <aside class="lab" id="lab">
+    <h2>Mockup Lab</h2>
+    <p class="hint">Turn the knobs — every screen and widget re-renders live from these parameters.</p>
+
+    <section>
+      <h3>Scenarios</h3>
+      <div class="presets" id="presets"></div>
+    </section>
+
+    <section>
+      <h3>Location</h3>
+      <div class="ctl">
+        <input type="text" id="in-loc" value="Boulder, CO" maxlength="28" aria-label="Location name">
+      </div>
+    </section>
+
+    <section>
+      <h3>Weather · Today</h3>
+      <div class="ctl"><label>Current temp <output id="out-temp"></output></label>
+        <input type="range" id="in-temp" min="10" max="110" step="1"></div>
+      <div class="ctl"><label>High <output id="out-high"></output></label>
+        <input type="range" id="in-high" min="20" max="115" step="1"></div>
+      <div class="ctl"><label>Low <output id="out-low"></output></label>
+        <input type="range" id="in-low" min="0" max="90" step="1"></div>
+      <div class="ctl"><label>Precip chance (day) <output id="out-precip"></output></label>
+        <input type="range" id="in-precip" min="0" max="100" step="5"></div>
+      <div class="ctl"><label>Wind <output id="out-wind"></output></label>
+        <input type="range" id="in-wind" min="0" max="45" step="1"></div>
+    </section>
+
+    <section>
+      <h3>Weather · Tonight</h3>
+      <div class="ctl"><label>Dew point <output id="out-dew"></output></label>
+        <input type="range" id="in-dew" min="0" max="80" step="1"></div>
+      <div class="ctl"><label>Precip chance (night) <output id="out-nprecip"></output></label>
+        <input type="range" id="in-nprecip" min="0" max="100" step="5"></div>
+    </section>
+
+    <section>
+      <h3>Vehicle</h3>
+      <div class="subctl">
+        <div class="mini">Body color</div>
+        <div class="swatches" id="body-swatches"></div>
+      </div>
+      <div class="subctl">
+        <div class="mini">Top type</div>
+        <div class="seg" id="top-seg">
+          <button data-top="soft">Soft top</button>
+          <button data-top="hard">Hard top</button>
+        </div>
+      </div>
+      <div class="subctl">
+        <div class="mini">Top color</div>
+        <div class="swatches" id="top-swatches"></div>
+      </div>
+    </section>
+  </aside>
+
+  <!-- ============ GALLERY ============ -->
+  <main>
+    <div class="gallery">
+      <h2>App screens</h2>
+      <div class="phones">
+
+        <div class="phone-wrap">
+          <div class="phone"><div class="screen" id="scr-today"></div></div>
+          <div class="caption">
+            <div class="name">Today</div>
+            <div class="desc">The at-a-glance Top Score with a plain-English verdict. The Jeep goes topless when the score says go.</div>
+          </div>
+        </div>
+
+        <div class="phone-wrap">
+          <div class="phone"><div class="screen" id="scr-forecast"></div></div>
+          <div class="caption">
+            <div class="name">Forecast</div>
+            <div class="desc">Seven days of scores so you can plan the weekend — best top-off day called out.</div>
+          </div>
+        </div>
+
+        <div class="phone-wrap">
+          <div class="phone"><div class="screen night" id="scr-overnight"></div></div>
+          <div class="caption">
+            <div class="name">Overnight</div>
+            <div class="desc">Dew-point spread gauge. Low within 2° of the dew point = the no-go zone.</div>
+          </div>
+        </div>
+
+        <div class="phone-wrap">
+          <div class="phone"><div class="screen" id="scr-garage"></div></div>
+          <div class="caption">
+            <div class="name">Garage</div>
+            <div class="desc">Customize your rig — body color, hard or soft top, top color.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="widgets-block">
+      <h2>Home &amp; Lock Screen widgets</h2>
+      <div class="widget-shelf">
+        <svg class="topo" viewBox="0 0 1400 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke="#f2efe6" stroke-opacity="0.2" stroke-width="1">
+            <path d="M-50,300 C150,220 300,340 520,270 S900,180 1100,260 S1350,240 1460,190"/>
+            <path d="M-50,330 C160,250 320,370 540,300 S920,210 1120,290 S1360,270 1460,220"/>
+            <path d="M-50,145 C130,90 350,165 570,108 S890,30 1130,108 S1350,90 1460,50"/>
+          </g>
+        </svg>
+        <div class="widget-col">
+          <div class="widget small" id="wg-small"></div>
+          <div class="wcap">Small</div>
+        </div>
+        <div class="widget-col">
+          <div class="widget medium" id="wg-medium"></div>
+          <div class="wcap">Medium</div>
+        </div>
+        <div class="widget-col">
+          <div class="lock-strip" id="wg-lock"></div>
+          <div class="wcap">Lock Screen</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  TOPSIDE is a design concept — nothing here talks to a real weather service, and no Jeeps were left uncovered in the rain.<br>
+  Mocked up for funsies at <a href="/">dividedattn.com</a>.
+</footer>
+
+<script>
+"use strict";
+
+/* ================= state ================= */
+
+const BODY_COLORS = [
+  { name: "Forest Green",  hex: "#2c5234" },
+  { name: "Chili Pepper",  hex: "#8c2b2b" },
+  { name: "Stone White",   hex: "#e6e2d4" },
+  { name: "Patriot Blue",  hex: "#24365e" },
+  { name: "Solar Yellow",  hex: "#e0b520" },
+  { name: "Black",         hex: "#1e2021" },
+  { name: "Desert Sand",   hex: "#c4ad85" },
+];
+const TOP_COLORS = [
+  { name: "Black",  hex: "#242628" },
+  { name: "Spice",  hex: "#a8895c" },
+  { name: "Khaki",  hex: "#8a8468" },
+  { name: "Gray",   hex: "#585d5e" },
+];
+
+const state = {
+  loc: "Boulder, CO",
+  temp: 74, high: 81, low: 55,
+  precip: 10, nprecip: 10,
+  wind: 8, dew: 46,
+  body: BODY_COLORS[0].hex,
+  topType: "soft",
+  topColor: TOP_COLORS[0].hex,
+};
+
+const PRESETS = [
+  { name: "Bluebird day",   v: { temp: 74, high: 81, low: 55, precip: 5,  nprecip: 0,  wind: 6,  dew: 42 } },
+  { name: "Pop-up storms",  v: { temp: 79, high: 86, low: 66, precip: 65, nprecip: 45, wind: 14, dew: 64 } },
+  { name: "Heat wave",      v: { temp: 97, high: 103, low: 78, precip: 0, nprecip: 0,  wind: 5,  dew: 55 } },
+  { name: "Cold snap",      v: { temp: 38, high: 44, low: 27, precip: 20, nprecip: 15, wind: 12, dew: 20 } },
+  { name: "Muggy night",    v: { temp: 81, high: 88, low: 68, precip: 15, nprecip: 20, wind: 4,  dew: 67 } },
+  { name: "Windy ridge",    v: { temp: 66, high: 72, low: 48, precip: 5,  nprecip: 5,  wind: 32, dew: 33 } },
+];
+
+/* ================= scoring ================= */
+
+function dayScore(high, precip, wind) {
+  let s = 100;
+  if (high > 88) s -= (high - 88) * 2.2;
+  if (high < 65) s -= (65 - high) * 2.4;
+  if (high < 48) s -= (48 - high) * 2.0;
+  s -= precip * 0.75;
+  if (precip >= 60) s -= 12;
+  if (wind > 15) s -= (wind - 15) * 1.6;
+  return Math.max(0, Math.min(100, Math.round(s)));
+}
+
+function dayVerdict(score) {
+  if (score >= 75) return { label: "Drop the top", short: "Top off", cls: "go",      color: "var(--go)",      hex: "#f0b429" };
+  if (score >= 50) return { label: "Judgment call", short: "Your call", cls: "caution", color: "var(--caution)", hex: "#e08a3c" };
+  return               { label: "Keep it on",   short: "Top on",  cls: "stop",    color: "var(--stop)",    hex: "#c4554d" };
+}
+
+function dayNote(score, v) {
+  const { high, precip, wind } = state;
+  if (precip >= 60) return "Real rain in the forecast — doors on, top on, no debate.";
+  if (score >= 75 && high >= 90) return "Hot one — sunscreen is now part of the drivetrain.";
+  if (score >= 75) return "Clear margin on temps and rain. Stow it and go.";
+  if (v.cls === "caution" && precip >= 30) return "Scattered showers possible — keep the top within reach.";
+  if (v.cls === "caution" && wind > 15) return "Gusty out there. Hats will not survive.";
+  if (v.cls === "caution") return "Borderline temps. Commit at your own comfort level.";
+  if (high < 50) return "Too cold for open air unless you enjoy suffering.";
+  return "Conditions aren't on your side today. Leave it buttoned up.";
+}
+
+function overnight() {
+  const spread = state.low - state.dew;
+  if (state.nprecip >= 40)
+    return { ok: false, label: "Cover up", tag: "Rain risk", color: "var(--stop)", hex: "#c4554d",
+             note: `${state.nprecip}% chance of rain tonight — that's a wet-seat lottery you'll lose.` };
+  if (spread <= 2)
+    return { ok: false, label: "No-go zone", tag: "Dew alert", color: "var(--stop)", hex: "#c4554d",
+             note: `Overnight low is within ${Math.max(0, Math.round(spread))}° of the dew point — everything inside will be soaked by sunrise.` };
+  if (spread <= 5)
+    return { ok: false, label: "Risky", tag: "Dew likely", color: "var(--caution)", hex: "#e08a3c",
+             note: `Only ${Math.round(spread)}° of spread between the low and the dew point. Expect damp seats.` };
+  return { ok: true, label: "Stay open", tag: "All clear", color: "var(--go)", hex: "#f0b429",
+           note: `${Math.round(spread)}° of spread between the low and the dew point — dry night ahead.` };
+}
+
+/* deterministic 7-day forecast riffing off today's parameters */
+const FC_DELTAS = [
+  { h: 0,  l: 0,  p: 0,   w: 0 },
+  { h: 3,  l: 2,  p: 10,  w: -2 },
+  { h: -2, l: -1, p: 45,  w: 4 },
+  { h: -6, l: -4, p: 25,  w: 8 },
+  { h: 1,  l: 0,  p: -5,  w: -3 },
+  { h: 4,  l: 3,  p: -10, w: -4 },
+  { h: 2,  l: 1,  p: 5,   w: 0 },
+];
+function forecast() {
+  const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const start = new Date().getDay();
+  return FC_DELTAS.map((d, i) => {
+    const idx = (start + i) % 7;
+    const high = state.high + d.h;
+    const low = state.low + d.l;
+    const precip = Math.max(0, Math.min(100, state.precip + d.p));
+    const wind = Math.max(0, state.wind + d.w);
+    const score = dayScore(high, precip, wind);
+    return {
+      name: i === 0 ? "Today" : dayNames[idx],
+      isWeekend: idx === 0 || idx === 6,
+      high, low, precip, wind, score,
+      verdict: dayVerdict(score),
+    };
+  });
+}
+
+/* ================= jeep svg ================= */
+
+function shade(hex, amt) {
+  const n = parseInt(hex.slice(1), 16);
+  const f = c => Math.max(0, Math.min(255, Math.round(c + amt)));
+  const r = f(n >> 16), g = f((n >> 8) & 255), b = f(n & 255);
+  return "#" + ((r << 16) | (g << 8) | b).toString(16).padStart(6, "0");
+}
+
+function jeepSVG(opts) {
+  const { body, topType, topColor, topOn } = opts;
+  const dark = shade(body, -26);
+  const trim = "#191b1c";
+  const glass = "rgba(159, 180, 184, 0.75)";
+  const glassDim = "rgba(159, 180, 184, 0.35)";
+
+  let top = "";
+  if (topOn && topType === "soft") {
+    top = `
+      <path d="M234,54 Q300,38 366,42 Q432,47 446,62 Q452,69 452,90 L452,138 L228,138 Z"
+            fill="${topColor}" stroke="${trim}" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M252,138 Q250,80 264,52" fill="none" stroke="rgba(0,0,0,0.28)" stroke-width="2.5"/>
+      <path d="M340,138 Q338,72 336,44" fill="none" stroke="rgba(0,0,0,0.28)" stroke-width="2.5"/>
+      <rect x="356" y="66" width="82" height="48" rx="12" fill="${glassDim}" stroke="rgba(0,0,0,0.35)" stroke-width="2.5"/>
+      <path d="M234,54 Q300,38 366,42 Q432,47 446,62" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="3"/>`;
+  } else if (topOn && topType === "hard") {
+    top = `
+      <path d="M232,52 L392,46 Q428,45 442,56 Q452,62 452,78 L452,138 L228,138 Z"
+            fill="${topColor}" stroke="${trim}" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M258,132 L262,58 L336,54 L338,132 Z" fill="${glass}" stroke="${trim}" stroke-width="2.5"/>
+      <path d="M352,132 L352,56 L400,54 Q430,53 440,64 L440,132 Z" fill="${glass}" stroke="${trim}" stroke-width="2.5"/>
+      <path d="M232,52 L392,46 Q428,45 442,56" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="3"/>`;
+  } else {
+    /* topless: interior + roll cage visible */
+    top = `
+      <rect x="256" y="116" width="22" height="22" rx="6" fill="#26292b"/>
+      <rect x="298" y="116" width="22" height="22" rx="6" fill="#26292b"/>
+      <path d="M344,140 L344,76 Q344,62 358,62 L368,62" fill="none" stroke="#26292b" stroke-width="10" stroke-linecap="round"/>
+      <path d="M368,62 L414,138" fill="none" stroke="#26292b" stroke-width="8" stroke-linecap="round"/>`;
+  }
+
+  return `
+  <svg viewBox="0 0 520 252" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jeep Wrangler TJ illustration">
+    <ellipse cx="262" cy="232" rx="230" ry="12" fill="rgba(0,0,0,0.35)"/>
+    ${top}
+    <!-- windshield (always up) -->
+    <polygon points="206,110 236,52 250,52 222,110" fill="${trim}"/>
+    <polygon points="222,106 248,58 250,58 250,106" fill="${topOn ? glass : glassDim}"/>
+    <!-- mirror -->
+    <path d="M208,96 L196,88" stroke="${trim}" stroke-width="4" stroke-linecap="round"/>
+    <rect x="186" y="78" width="12" height="16" rx="3" fill="${trim}"/>
+    <!-- body tub with wheel arches -->
+    <path d="M34,148 L34,192 L74,192 A58,58 0 0 1 190,192 L340,192 A58,58 0 0 1 456,192 L486,192 L486,148 Z"
+          fill="${body}" stroke="${trim}" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="34" y="140" width="452" height="12" fill="${body}" stroke="${trim}" stroke-width="3"/>
+    <!-- hood -->
+    <path d="M34,146 L34,122 Q34,112 46,112 L194,108 L208,146 Z"
+          fill="${body}" stroke="${trim}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M46,116 L190,112" stroke="rgba(255,255,255,0.16)" stroke-width="3" stroke-linecap="round"/>
+    <!-- rocker shade -->
+    <rect x="40" y="176" width="440" height="16" fill="rgba(0,0,0,0.18)"/>
+    <!-- door seams + handle -->
+    <path d="M226,142 L226,190 M332,142 L332,190" stroke="rgba(0,0,0,0.3)" stroke-width="3"/>
+    <rect x="300" y="152" width="20" height="6" rx="3" fill="rgba(0,0,0,0.35)"/>
+    <!-- fender flares -->
+    <path d="M74,192 A58,58 0 0 1 190,192" fill="none" stroke="${dark}" stroke-width="10"/>
+    <path d="M340,192 A58,58 0 0 1 456,192" fill="none" stroke="${dark}" stroke-width="10"/>
+    <!-- bumpers + spare -->
+    <rect x="14" y="172" width="30" height="18" rx="5" fill="#26292b"/>
+    <rect x="480" y="128" width="16" height="62" rx="7" fill="#212425"/>
+    <rect x="478" y="172" width="34" height="18" rx="5" fill="#26292b"/>
+    <!-- grille + headlight -->
+    <rect x="34" y="118" width="10" height="30" rx="3" fill="${dark}"/>
+    <circle cx="60" cy="132" r="9" fill="#ece7d4" stroke="${trim}" stroke-width="3"/>
+    <!-- wheels -->
+    <g>
+      <circle cx="132" cy="192" r="45" fill="#141617"/>
+      <circle cx="132" cy="192" r="22" fill="#3b4143"/>
+      <circle cx="132" cy="192" r="7" fill="#1c1f20"/>
+      <circle cx="398" cy="192" r="45" fill="#141617"/>
+      <circle cx="398" cy="192" r="22" fill="#3b4143"/>
+      <circle cx="398" cy="192" r="7" fill="#1c1f20"/>
+    </g>
+  </svg>`;
+}
+
+/* ================= shared UI bits ================= */
+
+function statusbar() {
+  return `
+  <div class="island"></div>
+  <div class="statusbar">
+    <span>9:41</span>
+    <span class="icons">
+      <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+      <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><path d="M8 9.5a1.4 1.4 0 1 0 0 1.5 1.4 1.4 0 0 0 0-1.5zM8 6c1.4 0 2.7.5 3.7 1.4l-1.3 1.3A3.6 3.6 0 0 0 8 7.8c-.9 0-1.8.3-2.4.9L4.3 7.4C5.3 6.5 6.6 6 8 6zm0-3.2c2.3 0 4.4.9 6 2.3l-1.3 1.3A6.7 6.7 0 0 0 8 4.8c-1.8 0-3.4.7-4.7 1.7L2 5.2A8.8 8.8 0 0 1 8 2.8z"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" fill="none" stroke="currentColor" opacity="0.5"/><rect x="2" y="2" width="15" height="8" rx="2" fill="currentColor"/><path d="M23 4 v4 a2 2 0 0 0 0 -4z" fill="currentColor" opacity="0.5"/></svg>
+    </span>
+  </div>`;
+}
+
+const ICONS = {
+  sun: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>`,
+  cal: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/></svg>`,
+  moon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>`,
+  jeep: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16v-4.5L5 8h9l2.5 3.5H21V16"/><circle cx="7.5" cy="16.5" r="2"/><circle cx="16.5" cy="16.5" r="2"/><path d="M3 16h2.5M9.5 16.5h5M18.5 16H21"/></svg>`,
+  drop: `<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.7S5.5 10 5.5 14.5a6.5 6.5 0 0 0 13 0C18.5 10 12 2.7 12 2.7z"/></svg>`,
+};
+
+function tabbar(active) {
+  const tabs = [
+    ["Today", "sun"], ["Forecast", "cal"], ["Overnight", "moon"], ["Garage", "jeep"],
+  ];
+  return `<div class="tabbar">` + tabs.map(([name, ic]) =>
+    `<div class="tab ${name === active ? "on" : ""}">${ICONS[ic]}<span>${name}</span></div>`
+  ).join("") + `</div>`;
+}
+
+function esc(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function scoreDial(score, hex, size) {
+  const r = 55, c = 2 * Math.PI * r;
+  const off = c * (1 - score / 100);
+  return `
+  <svg width="${size}" height="${size}" viewBox="0 0 140 140">
+    <circle cx="70" cy="70" r="${r}" fill="none" stroke="rgba(244,241,230,0.09)" stroke-width="7"/>
+    <circle cx="70" cy="70" r="${r}" fill="none" stroke="${hex}" stroke-width="7" stroke-linecap="round"
+            stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}"
+            transform="rotate(-90 70 70)"/>
+    <text x="70" y="72" text-anchor="middle" fill="#f2efe6" font-size="46" font-weight="200" font-family="inherit">${score}</text>
+    <text x="70" y="95" text-anchor="middle" fill="#9aa09a" font-size="9" letter-spacing="2.5" font-weight="600">TOP SCORE</text>
+  </svg>`;
+}
+
+/* ================= screens ================= */
+
+function renderToday() {
+  const score = dayScore(state.high, state.precip, state.wind);
+  const v = dayVerdict(score);
+  const topOn = score < 75;
+  document.getElementById("scr-today").innerHTML = `
+    ${statusbar()}
+    <div class="app">
+      <div class="app-head">
+        <div class="loc">${esc(state.loc)}</div>
+        <div class="title">Today</div>
+      </div>
+      <div class="dial-row">${scoreDial(score, v.hex, 148)}</div>
+      <div class="verdict-pill" style="color:${v.color}">${v.label}</div>
+      <div class="verdict-note">${dayNote(score, v)}</div>
+      <div class="jeep-stage">${jeepSVG({ body: state.body, topType: state.topType, topColor: state.topColor, topOn })}</div>
+      <div class="cond-grid">
+        <div class="cond"><div class="v">${state.temp}°</div><div class="k">Now</div></div>
+        <div class="cond"><div class="v">${state.high}°<small>/${state.low}°</small></div><div class="k">Hi / Lo</div></div>
+        <div class="cond"><div class="v">${state.precip}<small>%</small></div><div class="k">Precip</div></div>
+        <div class="cond"><div class="v">${state.wind}<small>mph</small></div><div class="k">Wind</div></div>
+      </div>
+      <div style="flex:1"></div>
+    </div>
+    ${tabbar("Today")}`;
+}
+
+function renderForecast() {
+  const days = forecast();
+  const best = days.reduce((a, b) => (b.score > a.score ? b : a));
+  document.getElementById("scr-forecast").innerHTML = `
+    ${statusbar()}
+    <div class="app">
+      <div class="app-head">
+        <div class="loc">${esc(state.loc)}</div>
+        <div class="title">This week</div>
+      </div>
+      <div class="fc-list">
+        ${days.map(d => `
+          <div class="fc-row ${d.isWeekend ? "wknd" : ""}">
+            <span class="d">${d.name}</span>
+            <span class="hl">${d.high}° <small>/ ${d.low}°</small></span>
+            <span class="pp">${ICONS.drop}${d.precip}%</span>
+            <span class="score-chip" style="background:${d.verdict.hex}">${d.score}</span>
+          </div>`).join("")}
+      </div>
+      <div class="fc-best">Best top-off day: <b>${best.name}</b> — score ${best.score}, ${best.high}° and ${best.precip}% precip.</div>
+    </div>
+    ${tabbar("Forecast")}`;
+}
+
+function dewGauge() {
+  /* horizontal scale around low + dew, with the ±2° no-go band shaded */
+  const lo = Math.min(state.dew, state.low) - 10;
+  const hi = Math.max(state.dew, state.low) + 10;
+  const X = t => 16 + (t - lo) / (hi - lo) * 248;
+  const bandA = X(state.dew - 2), bandB = X(state.dew + 2);
+  const ticks = [];
+  const step = (hi - lo) > 36 ? 10 : 5;
+  for (let t = Math.ceil(lo / step) * step; t <= hi; t += step) {
+    ticks.push(`<line x1="${X(t)}" y1="46" x2="${X(t)}" y2="52" stroke="rgba(244,241,230,0.25)" stroke-width="1"/>
+      <text x="${X(t)}" y="64" text-anchor="middle" fill="#6f746f" font-size="8.5" font-family="inherit">${t}°</text>`);
+  }
+  return `
+  <svg viewBox="0 0 280 70" style="width:100%">
+    <rect x="16" y="42" width="248" height="5" rx="2.5" fill="rgba(244,241,230,0.10)"/>
+    <rect x="${bandA.toFixed(1)}" y="38" width="${(bandB - bandA).toFixed(1)}" height="13" rx="4" fill="rgba(196,85,77,0.4)"/>
+    ${ticks.join("")}
+    <g>
+      <line x1="${X(state.dew)}" y1="20" x2="${X(state.dew)}" y2="42" stroke="#c4554d" stroke-width="2"/>
+      <text x="${X(state.dew)}" y="13" text-anchor="middle" fill="#c4554d" font-size="9" font-weight="700" letter-spacing="1">DEW ${state.dew}°</text>
+    </g>
+    <g>
+      <circle cx="${X(state.low)}" cy="44.5" r="6.5" fill="#f2efe6" stroke="#17191a" stroke-width="2"/>
+      <text x="${X(state.low)}" y="31" text-anchor="middle" fill="#f2efe6" font-size="9" font-weight="700" letter-spacing="1">LOW ${state.low}°</text>
+    </g>
+  </svg>`;
+}
+
+function renderOvernight() {
+  const o = overnight();
+  const spread = Math.round(state.low - state.dew);
+  document.getElementById("scr-overnight").innerHTML = `
+    ${statusbar()}
+    <div class="app">
+      <div class="app-head">
+        <div class="loc">${esc(state.loc)}</div>
+        <div class="title">Overnight</div>
+      </div>
+      <div class="on-verdict">
+        <div class="big">${o.label}</div>
+        <div class="tag" style="color:${o.color}">${o.tag}</div>
+      </div>
+      <div class="gauge-block">
+        <div class="mini">Dew-point spread · no-go band = dew ± 2°</div>
+        ${dewGauge()}
+      </div>
+      <div class="spread-note">${o.note}</div>
+      <div class="on-rows">
+        <div class="on-row"><span class="k">Overnight low</span><span class="v">${state.low}°</span></div>
+        <div class="on-row"><span class="k">Dew point</span><span class="v">${state.dew}°</span></div>
+        <div class="on-row"><span class="k">Spread</span><span class="v" style="color:${o.color}">${spread}°</span></div>
+        <div class="on-row"><span class="k">Precip tonight</span><span class="v">${state.nprecip}%</span></div>
+      </div>
+      <div style="flex:1"></div>
+    </div>
+    ${tabbar("Overnight")}`;
+}
+
+function swatchButtons(colors, current, group) {
+  return colors.map(c =>
+    `<button class="swatch" style="background:${c.hex}" title="${c.name}"
+       aria-pressed="${c.hex === current}" data-group="${group}" data-hex="${c.hex}"
+       aria-label="${c.name}"></button>`).join("");
+}
+
+function renderGarage() {
+  document.getElementById("scr-garage").innerHTML = `
+    ${statusbar()}
+    <div class="app">
+      <div class="app-head">
+        <div class="loc">My rig</div>
+        <div class="title">Garage</div>
+      </div>
+      <div class="garage-stage">${jeepSVG({ body: state.body, topType: state.topType, topColor: state.topColor, topOn: true })}</div>
+      <div class="garage-name">
+        <div class="yr">1999</div>
+        <div class="model">Wrangler TJ</div>
+      </div>
+      <div class="g-section">
+        <div class="mini">Body color</div>
+        <div class="swatches">${swatchButtons(BODY_COLORS, state.body, "body")}</div>
+      </div>
+      <div class="g-section">
+        <div class="mini">Top</div>
+        <div class="seg" data-role="garage-seg">
+          <button data-top="soft" aria-pressed="${state.topType === "soft"}">Soft top</button>
+          <button data-top="hard" aria-pressed="${state.topType === "hard"}">Hard top</button>
+        </div>
+      </div>
+      <div class="g-section">
+        <div class="mini">Top color</div>
+        <div class="swatches">${swatchButtons(TOP_COLORS, state.topColor, "top")}</div>
+      </div>
+      <div style="flex:1"></div>
+    </div>
+    ${tabbar("Garage")}`;
+}
+
+/* ================= widgets ================= */
+
+function renderWidgets() {
+  const score = dayScore(state.high, state.precip, state.wind);
+  const v = dayVerdict(score);
+  const o = overnight();
+  const days = forecast().slice(0, 4);
+
+  document.getElementById("wg-small").innerHTML = `
+    <div class="w-app">Topside</div>
+    <div class="w-verdict" style="color:${v.hex}">${v.short}</div>
+    <div class="w-score">${score}</div>
+    <div class="w-sub">${state.high}° · ${state.precip}% precip</div>`;
+
+  document.getElementById("wg-medium").innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div>
+        <div class="w-app">Topside · ${esc(state.loc)}</div>
+        <div class="w-verdict" style="color:${v.hex}">${v.label}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="w-app" style="color:${o.hex}">Tonight</div>
+        <div style="font-size:0.72rem;font-weight:600;color:${o.hex}">${o.label}</div>
+      </div>
+    </div>
+    <div class="w-days">
+      ${days.map(d => `
+        <div class="w-day">
+          <div class="d">${d.name === "Today" ? "Now" : d.name}</div>
+          <div class="s" style="color:${d.verdict.hex}">${d.score}</div>
+          <div class="t">${d.high}°</div>
+        </div>`).join("")}
+    </div>`;
+
+  const r = 30, c = 2 * Math.PI * r, off = c * (1 - score / 100);
+  document.getElementById("wg-lock").innerHTML = `
+    <div class="lk-date">Saturday, June 21</div>
+    <div class="lk-time">9:41</div>
+    <div class="lk-widgets">
+      <div class="widget circular">
+        <svg width="66" height="66" viewBox="0 0 72 72">
+          <circle cx="36" cy="36" r="${r}" fill="none" stroke="rgba(242,239,230,0.2)" stroke-width="5"/>
+          <circle cx="36" cy="36" r="${r}" fill="none" stroke="${v.hex}" stroke-width="5" stroke-linecap="round"
+                  stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 36 36)"/>
+          <text x="36" y="41" text-anchor="middle" fill="#f2efe6" font-size="20" font-weight="300" font-family="inherit">${score}</text>
+        </svg>
+      </div>
+      <div class="lock-inline" style="align-self:center">
+        ${o.ok ? "🌙 Clear to stay open tonight" : "💧 " + o.label + " tonight"}
+      </div>
+    </div>`;
+}
+
+/* ================= controls wiring ================= */
+
+const SLIDERS = [
+  ["in-temp", "temp", "out-temp", v => v + "°"],
+  ["in-high", "high", "out-high", v => v + "°"],
+  ["in-low", "low", "out-low", v => v + "°"],
+  ["in-precip", "precip", "out-precip", v => v + "%"],
+  ["in-wind", "wind", "out-wind", v => v + " mph"],
+  ["in-dew", "dew", "out-dew", v => v + "°"],
+  ["in-nprecip", "nprecip", "out-nprecip", v => v + "%"],
+];
+
+function paintSlider(el) {
+  const pct = (el.value - el.min) / (el.max - el.min) * 100;
+  el.style.setProperty("--fill", pct + "%");
+}
+
+function syncControls() {
+  for (const [id, key, outId, fmt] of SLIDERS) {
+    const el = document.getElementById(id);
+    el.value = state[key];
+    document.getElementById(outId).textContent = fmt(state[key]);
+    paintSlider(el);
+  }
+  document.getElementById("in-loc").value = state.loc;
+  document.getElementById("body-swatches").innerHTML = swatchButtons(BODY_COLORS, state.body, "body");
+  document.getElementById("top-swatches").innerHTML = swatchButtons(TOP_COLORS, state.topColor, "top");
+  document.querySelectorAll("#top-seg button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.top === state.topType)));
+}
+
+function renderAll() {
+  renderToday();
+  renderForecast();
+  renderOvernight();
+  renderGarage();
+  renderWidgets();
+}
+
+function init() {
+  /* presets */
+  const pWrap = document.getElementById("presets");
+  pWrap.innerHTML = PRESETS.map((p, i) => `<button data-i="${i}">${p.name}</button>`).join("");
+  pWrap.addEventListener("click", e => {
+    const b = e.target.closest("button[data-i]");
+    if (!b) return;
+    Object.assign(state, PRESETS[+b.dataset.i].v);
+    syncControls();
+    renderAll();
+  });
+
+  /* sliders */
+  for (const [id, key, outId, fmt] of SLIDERS) {
+    const el = document.getElementById(id);
+    el.addEventListener("input", () => {
+      state[key] = +el.value;
+      document.getElementById(outId).textContent = fmt(state[key]);
+      paintSlider(el);
+      renderAll();
+    });
+  }
+
+  /* location */
+  document.getElementById("in-loc").addEventListener("input", e => {
+    state.loc = e.target.value.trim() || "Somewhere, USA";
+    renderAll();
+  });
+
+  /* swatches + top type — delegated so the garage screen's copies work too */
+  document.addEventListener("click", e => {
+    const sw = e.target.closest(".swatch[data-group]");
+    if (sw) {
+      if (sw.dataset.group === "body") state.body = sw.dataset.hex;
+      else state.topColor = sw.dataset.hex;
+      syncControls();
+      renderAll();
+      return;
+    }
+    const seg = e.target.closest("button[data-top]");
+    if (seg) {
+      state.topType = seg.dataset.top;
+      syncControls();
+      renderAll();
+    }
+  });
+
+  syncControls();
+  renderAll();
+}
+
+init();
+</script>
+</body>
+</html>
