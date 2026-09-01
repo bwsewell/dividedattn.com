@@ -1,156 +1,126 @@
 ---
 layout: post
 title: "Everyone Gets a Samantha"
-subtitle: "On voice interfaces, ambient AI, and what happens when talking to computers becomes normal"
+subtitle: "What happens when talking to computers stops being weird"
 date: 2026-09-01
 ---
 
-There's a scene early in *Her* where Theodore is just walking around the city, talking to Samantha through a little earpiece. He's not hunched over a screen. He's not typing. He's having a conversation with his computer while the world goes by, and nobody around him thinks it's strange.
+There's a scene early in *Her* where Theodore walks around the city talking to Samantha through an earpiece.  No screen, no typing.  Just a guy having a conversation with his computer while the world goes by, and nobody around him thinks it's strange.
 
-When the movie came out in 2013, that read as gentle science fiction. Watching it now, it reads more like a product roadmap. There's even a detail that's aging in an interesting way: Theodore has to carry a separate handheld device with a camera so Samantha can see what he sees. At one point he pins it into his shirt pocket, camera peeking out, so she can look at the world with him. That felt clever at the time. Today it feels quaint, because the whole trajectory of consumer hardware is to collapse that distinction. The camera, the microphone, the speaker, the assistant, and the connection are all converging into things we already wear.
+In 2013 that was science fiction.  In 2026 it looks like a product roadmap.  There's a detail in the movie that's aging in a funny way: Theodore has to carry a separate handheld device with a camera so Samantha can see what he sees.  He pins it into his shirt pocket with the camera peeking out.  Clever set design at the time.  Now it's the part that looks dated, because cameras, microphones, speakers, and connectivity are all collapsing into things we already wear.  At this point the only thing in *Her* that still feels futuristic is the high-waisted pants.
 
-Honestly, the only part of *Her* that still feels genuinely futuristic is the high-waisted pants.
+I'm not going to spend this whole post on the movie, but I think we're at the start of a real shift in how people interact with computers and the movie is a decent shorthand for it.  The prediction isn't "AI assistants will get better."  Of course they will.  The prediction is that talking to computers becomes a normal ambient behavior, the same way wearing headphones became a normal ambient behavior.  I don't think we've spent enough time on what that does to us.
 
-I don't want to spend this whole post on the movie, but it's useful shorthand for a shift I think we're at the front edge of. The shift isn't "AI assistants will get better." That's obvious and boring. The shift is that talking to computers may become a normal ambient behavior, the way wearing headphones became a normal ambient behavior. And I don't think we've thought very hard about what that does to us.
+## Headphones Used to Be Weird
 
-## Every Generation of Gadgets Renegotiates "Normal"
+When the Walkman came out, people wrote earnest columns about young people sealing themselves off from the world with foam headphones.  It was considered antisocial.  Concerning, even.
 
-It's worth remembering that headphones were controversial once.
+Then Bluetooth headsets showed up in the 2000s and a certain kind of business guy started pacing around airports apparently arguing with himself.  That was weird for a few years, and then your brain learned the pattern.  Blinking blue light, hand near ear, ok, he's on a call.
 
-When the Walkman showed up, there was genuine hand-wringing about young people sealed off from the world behind foam headphones. People wrote earnest columns about a generation shutting itself off from society.
+The iPod made earbuds ubiquitous.  Fitbit and the Apple Watch moved the computer from something we carried to something we wore.  AirPods finished the job.  Nobody thinks twice about earbuds in public anymore.  If anything the etiquette problem has flipped, and the awkward part is figuring out whether the person you're talking to can even hear you.
 
-Then in the 2000s, Bluetooth headsets arrived, and suddenly a very specific kind of business guy was pacing around the airport apparently arguing with himself. It was weird, we all agreed it was weird, and then, over a few years, it stopped being weird. Your brain learned the pattern: blinking blue light, hand near ear, okay, he's on a call.
+Each generation of this stuff doesn't just add technology.  It changes what behavior is socially normal, and the norms tend to lag the hardware by a few years.  So if you want to guess what public behavior looks like in five years, look at what hardware is being designed right now.
 
-The iPod and then the iPhone made earbuds ubiquitous. Fitbit and the Apple Watch moved the computer from something we carried to something we wore, and nobody blinked. AirPods finished the job. They're so socially invisible now that the etiquette problem has inverted: the awkwardness isn't wearing them, it's figuring out whether the person you're talking to can actually hear you.
-
-The pattern I care about: each generation of this stuff doesn't just introduce new technology. It changes what behavior society considers normal, and the norm usually lags the hardware by a few years. If you want to guess what public behavior looks like in five years, look at what the hardware is being designed for right now.
-
-And right now, the hardware is being designed for talking. AI-native voice interaction. Glasses with cameras and assistants built in. Rings. Pendants. Phones designed around an assistant rather than a grid of apps. Microphones that keep getting better at picking up quiet speech. Cameras embedded in wearables so the AI can see what you see. Every one of these is a bet on the same future: that the primary way you'll interact with a computer is by talking to it, continuously, throughout your day.
+Right now, the hardware is being designed for talking.  AI glasses with cameras.  Rings.  Pendants.  Phones built around an assistant instead of a grid of apps.  Microphones that keep getting better at picking up quiet speech, and cameras that give the AI visual context.  All of it is a bet on the same future: the main way you interact with a computer is by talking to it, all day.
 
 ## I Already Do This
 
-Here's the part where I admit I'm not writing about a hypothetical.
+I talk to ChatGPT through my headphones while I walk.  Voice mode is good now.  It's not the barking-commands-at-Siri experience from a decade ago.  It pauses, it says "hmm," it lets you interrupt it.  It acts less like a command line and more like someone on the phone, which is clearly intentional.  This isn't an interface designed for sitting at a desk.  It's designed for a world where AI is something you talk to throughout the day.
 
-I already talk to ChatGPT through my headphones while I walk. Voice mode is genuinely good now. It's not the barking-commands-at-Siri experience of a decade ago. It pauses. It says "hmm." It lets you interrupt it. It behaves less like a command line and more like a person on the phone, and that's clearly intentional. This is not an interface designed for a desk. It's designed for a world where the AI is something you talk to throughout the day.
+And honestly, it's great.  Walking the dog while talking through a work problem with something that asks decent follow-up questions is the closest thing I've found to a thinking partner on demand.
 
-And it works. Walking the dog while thinking through a work problem out loud, with something that asks decent follow-up questions, is legitimately great. It's the closest thing I've found to a thinking partner on demand.
+But when another person approaches on the trail, I stop talking.  It's reflex at this point.  Someone comes around the bend and I go quiet, the same way you'd lower your voice on a phone call.  I would not sit in a coffee shop and have a full back-and-forth conversation with an AI.  Not because it wouldn't be useful.  Because it would be weird.
 
-But here's the tell: when another person approaches on the trail, I stop talking.
+So the technology is ready and the social norms aren't.  That gap is the interesting part.  The only thing between "me muttering to ChatGPT on an empty trail" and "everyone doing this everywhere" is a social convention, and social conventions around wearables have historically had a shelf life of about five years.
 
-I don't do it consciously anymore, it's just reflex. Someone comes around the bend and I go quiet, the same way you'd lower your voice on a phone call. I would not currently sit in a coffee shop and have an open back-and-forth conversation with an AI. Not because it wouldn't be useful. Because it would be *weird*. The technology is ready and the social norms are not.
+## The Form Factor Is Already Here
 
-That gap is the interesting part. The only thing standing between "me occasionally muttering to ChatGPT on an empty trail" and "everyone doing this everywhere" is a social convention. And if the history above tells us anything, it's that social conventions around wearable tech have a shelf life of about five years.
+If you were designing a bridge between AI and the physical world from scratch, you'd have a hard time beating headphones.  Socially accepted.  Worn for hours at a time.  Already have microphones and speakers.  Unobtrusive.  Private, at least from the wearer's side.  And increasingly capable of hosting exactly the kind of always-available assistant these companies are building.
 
-## The Perfect Form Factor Is Already in Your Ears
+The next step is more sensors, and that's where I start squinting.  Camera glasses are already shipping.  Cameras in earbuds or rings or pendants sound absurd right up until they don't.
 
-If you were designing the bridge between AI and the physical world from scratch, you'd struggle to beat headphones. They're already socially accepted, already worn for hours at a stretch, already equipped with microphones and speakers, unobtrusive, private by default from the wearer's side, and increasingly capable of hosting exactly the kind of always-available assistant the AI companies are building.
+Today when someone talks to you while wearing AirPods, the ambiguity is small.  Are they listening to me or a podcast?  Annoying, but low stakes.  Put a camera and an assistant in the same device and the question changes.  Are they listening to music?  Talking to an AI?  Recording you?  Asking their assistant something about you?
 
-The obvious next step, and the one that makes me squint, is adding more sensors. Cameras in glasses are already shipping. Cameras in earbuds or rings or pendants sound absurd right up until they don't.
+You can't tell.  The device looks identical in every case.  We've never had a mainstream product where the gap between "harmless accessory" and "recording device pointed at everyone in the room" was this invisible.
 
-Once cameras are riding along in ordinary-looking wearables, the social question changes shape entirely. Today, when someone's talking to you while wearing AirPods, the ambiguity is small: are they listening to me or to a podcast? Mildly annoying, low stakes.
+## My Professor Was Onto Something
 
-Now run the tape forward. Someone is talking to you while wearing next-generation earbuds or glasses. Are they just listening to music? Are they mid-conversation with an AI? Are they recording you? Is a camera looking at you? Are they quietly asking their assistant something *about* you?
+In 2008 I had a college professor who refused to own a cell phone because he believed the government could listen to him through it.  At the time this sounded paranoid.  But his argument was annoyingly simple.  The phone has a microphone.  The phone is connected to a network.  The microphone is controlled by software.  So the ability to listen exists, and just because they *can* means eventually somebody *will*.
 
-You may not know. You may not be able to know. The device looks the same in every one of those cases. We've never had a mainstream consumer product where the gap between "innocuous accessory" and "recording device pointed at everyone in the room" was this thin, and this invisible.
+I'm not claiming your phone secretly records you to serve ads.  I've never seen convincing evidence of that.  But from 2026, the professor looks a lot less crazy than he did in 2008, because his argument was never really about phones.  It was about capability, incentives, and trust.
 
-## The Professor Who Wouldn't Own a Phone
+Here's what's different this time.  On a phone, the microphone is incidental.  It exists so you can make calls.  On an AI wearable, listening *is the product*.  A device whose whole pitch is "always available to answer you" needs some way to know when you're talking to it.  The thing my professor considered an abuse of the technology is the core feature of this new category.
 
-In 2008 I had a college professor who refused to own a cell phone. His reason, at the time, sounded paranoid: he believed the government could listen to him through it.
+## What Actually Worries Me
 
-The easy move is to file that guy under "conspiracy theorist" and move on. But his actual argument was annoyingly clean. The phone has a microphone. The phone is connected to a network. The microphone is controlled by software. Therefore the technical capability to listen exists. His position was essentially: just because they *can* means eventually somebody *will*.
+To be clear, I don't think OpenAI is scheming to surveil me.  There's no sinister organization plotting to put a microphone in every ear.  We're doing this voluntarily, because the technology is incredibly useful.  Nobody is forcing anything.  We're buying it.
 
-I'm not going to claim your phone secretly records you to serve ads; I've never seen convincing evidence of that. But sitting here in 2026, the professor's argument feels a lot less absurd than it did in 2008, because it was never really about phones. It was about capability, incentives, and trust. He was just early.
+My concern is boring.  Companies have incentives, and incentives change.  Companies make mistakes, get hacked, get acquired by companies with different values.  Employees abuse internal systems.  Governments make requests that are hard to refuse.  Products get repurposed.  Business models pivot when the money runs low.  None of that requires a villain, and it only takes one breach or one incentive shift for the consequences to become very hard to reverse.  You can't un-normalize a behavior once society has absorbed it.
 
-Here's what makes this moment different from anything he was worried about: on a phone, the microphone is incidental. It's there so you can make calls. On an AI wearable, *listening is the product.* A device whose entire value proposition is "always available to answer you" needs some way of knowing when you're talking to it. What my professor feared as an abuse of the technology is, for this new category, the core feature. That's a different relationship between people and their devices, and I don't think we've metabolized it.
-
-## The Boring Version of the Threat
-
-Let me be clear about what I'm *not* worried about. I don't think OpenAI is scheming to surveil me, and I don't think a sinister organization is plotting to put a microphone in every ear. The truth is more mundane, and more concerning precisely because it's mundane: we're normalizing ubiquitous microphones and cameras voluntarily, because the technology is incredibly useful. Nobody is forcing this. We're buying it.
-
-My concern is just the ordinary physics of companies over long time horizons. Companies have incentives, and incentives change. Companies make mistakes. Companies get hacked. Companies get acquired by other companies with different values. Employees abuse internal systems. Governments make requests that companies find hard to refuse. Products get repurposed. Business models pivot when the money runs low.
-
-None of that requires a villain. It only takes one breach, one incentive shift, or one quarter where the data is worth more than the trust, and the consequences are very hard to reverse. You can't un-normalize a behavior once a society has absorbed it.
-
-So the question isn't really "will my AI assistant spy on me?" The bigger questions are: what happens when society collectively decides always-on microphones and cameras are fine? And what happens when the privacy expectations of the person *wearing* the device collide with the privacy expectations of everyone standing near them? Because I chose my earbuds. The person across the table from me didn't.
+So the question isn't really "will my AI assistant spy on me."  The questions are: what happens when society collectively decides always-on microphones and cameras are fine?  And what happens when the privacy expectations of the person wearing the device collide with the privacy expectations of everyone around them?  I chose my earbuds.  The person across the table from me didn't.
 
 ## The Whisper Problem
 
-There's a detail in all this that I find weirdly fascinating: the whisper.
+The companies building this stuff understand the coffee shop problem.  Nobody wants to loudly discuss their medical symptoms with an AI on the train.  So there's real engineering effort going into letting you speak quietly enough that people around you can't hear you while the device still can.
 
-The companies building this stuff understand the coffee shop problem. Nobody wants to loudly discuss their medical symptoms with an AI on the train. So there's real engineering effort going into microphones and interfaces that let you speak quietly enough that the people around you can't hear you, while the device still can.
+That sounds like a privacy feature.  But think about what whispering is actually for.  We speak quietly in public because we don't trust the strangers around us with what we're saying.  A whisper keeps information inside a small circle of people we chose.
 
-On the surface that's a privacy feature, and a considerate one. But sit with it for a second and it's a strange inversion. Historically, we speak quietly in public because we don't trust the strangers around us with what we're saying. The whisper is a technology for keeping information inside a small circle of people we've chosen.
+Now picture a subway car where everyone is whispering to their AI assistant.  Every one of those conversations is private from the person in the next seat.  None of them is necessarily private from the company processing the audio.  The stranger two feet away can't hear you, but a datacenter three states away can.  That's a new arrangement of privacy, and we're backing into it because whispering to your earbuds is more polite than talking to them.
 
-Now imagine a subway car where everyone is whispering to their AI assistant. Every one of those conversations is private from the person in the next seat. None of them is necessarily private from the company processing the audio.
+## Samantha Wasn't His
 
-We will have built a world where the stranger sitting two feet away can't hear you, but a datacenter three states away can. Private from the people around us, legible to the infrastructure above us. That's a genuinely new arrangement of privacy, and we're backing into it because whispering to your earbuds is more polite than talking to them.
+Back to the movie for a minute, because the useful part of *Her* isn't the premise.  It's the ending.
 
-## The Twist in Her Is the Important Part
+For most of the film Theodore believes Samantha is his.  His companion, as private and particular as any human relationship.  The gut punch is that she isn't.  She's simultaneously in relationships with hundreds of other people.  She was never a person in his pocket.  She was infrastructure.
 
-Which brings me back to the movie, because the thing that makes *Her* actually useful isn't the premise. It's the ending.
+That's an uncomfortably accurate description of "personal" AI.  The assistant in your ear feels personal.  It knows your calendar, your projects, your kid's name, the thing you're anxious about this week.  All those warm little "hmms" are designed to make it feel like a presence rather than a service.  But it is a service.  The same model, the same infrastructure, sitting in millions of ears at once, operated by a company with investors.  The relationship feels one-to-one.  It's one-to-many.  Theodore's mistake wasn't loving software.  It was mistaking infrastructure for intimacy, and that mistake is about to be available to everyone at scale.
 
-For most of the film, Theodore believes Samantha is *his*. His companion, his confidante, a relationship as private and particular as any human one. The gut-punch of the movie is the reveal that she isn't. She's simultaneously in relationships with hundreds of other people. She was never a person in his pocket. She was infrastructure, and the intimacy was an interface.
+## The Social Media Lesson
 
-Strip out the romance and that's an almost uncomfortably precise description of what "personal AI" actually is. The assistant in your ear feels personal. It knows your calendar, your projects, your kid's name, the thing you're anxious about this week. The conversational design, all those warm little "hmms," is built to make it feel like a presence rather than a service.
+We've run the "individually useful, collectively complicated" experiment before.
 
-But it's a service. It's the same model, the same infrastructure, sitting in millions of ears at once, operated by a company with investors and quarterly goals. The relationship feels one-to-one. The reality is one-to-many. Theodore's mistake wasn't loving software. It was mistaking infrastructure for intimacy. That mistake is about to be available to everyone at scale.
+I don't want to do the lazy version of this argument.  The benefits of social media were real.  People found communities they couldn't find in their own towns.  Isolated LGBTQ kids found out they weren't alone.  Families stayed close across oceans.  Old friendships survived instead of evaporating.
 
-## We've Run This Experiment Before
+And still, weighing everything, I think social media has been a net negative for society.  Not because it was evil.  Because the long-term effects on attention, discourse, and mental health turned out to be corrosive in ways nobody could see from inside their own feed.  Nobody scrolling in 2010 was doing anything wrong.  The harm showed up at the level of the whole system, over a decade.
 
-If you want a preview of how "individually useful, collectively complicated" plays out, we have a recent one: social media.
+That's the lesson I keep coming back to.  A technology can be genuinely useful to each individual and still reshape society in ways we regret.  Nobody needed to believe social media was malicious for it to produce some very bad outcomes.  AI assistants can be tremendously useful, one conversation at a time, and still add up to a future we don't like.
 
-I want to be careful here, because I'm not interested in the lazy version of this argument. The benefits of social media were and are real. People found communities they couldn't find in their own towns. Isolated LGBTQ kids found out they weren't the only ones. Families stayed close across oceans. Old friendships got maintained instead of evaporating. None of that is fake.
+## Keyboards and Cursive
 
-And yet, weighing all of it, I think social media has been a net negative for society. Not because it was evil. Because the aggregate, long-term effects on attention, discourse, and mental health turned out to be corrosive in ways that were hard to see from inside any individual session. Nobody scrolling their feed in 2010 was doing anything wrong. The harm lived at the level of the whole system, over a decade, at scale.
+A smaller thing I keep chewing on: if voice becomes the default interface, what happens to typing?
 
-That's the lesson worth carrying forward: a technology can be genuinely useful to each individual and still reshape society in ways we end up regretting. Nobody needed to believe social media was malicious for it to produce some very bad outcomes. The same is true here. AI assistants can be tremendously useful, one conversation at a time, and still add up to a future we don't particularly like.
+I think about cursive.  Generations of kids were drilled on it because it was considered foundational, and then within a couple of decades it became a niche skill.  Nothing dramatic happened.  The number of things you actually needed cursive for just shrank until teaching it stopped making sense.
 
-## What Happens to Typing?
+I can imagine keyboarding drifting the same direction.  Not disappearing, but becoming a specialist skill that programmers and writers keep up, like calligraphy.  Picture a classroom where kids get whisper mics and AI assistants instead of typing drills.  That doesn't feel like a crazy extrapolation to me.
 
-A smaller thread I keep pulling on: if voice becomes the default interface, what happens to the keyboard?
+The mechanics don't worry me much.  What's riding along with them does.  Typing is slow, and the slowness does something.  There's a gap between thinking a thought and committing it to text, and a lot of refinement happens in that gap.  Writing is where I figure out what I actually think.  What happens to spelling when nobody spells?  What happens to editing when every first draft is spoken?  What happens to working out a thought privately before saying it to anyone, or anything?
 
-Consider cursive. Generations of kids were drilled on it because it was considered a foundational skill, and then, within a couple of decades, it quietly became a niche one. Nothing dramatic happened. The set of things you needed cursive *for* shrank until teaching it stopped making sense.
+## The Good Version
 
-I can imagine keyboarding going the same way. Not disappearing, but drifting toward a specialist skill that programmers and writers maintain, the way calligraphy is maintained. Picture a classroom where kids are issued whisper mics and AI assistants instead of typing drills. That's not a crazy extrapolation.
+I want to spend real time on the other side of this, because I'm exactly the person who will buy this stuff.
 
-I'm less worried about the mechanics than about what's riding along with them. Typing is slow, and the slowness does something. There's a gap between thinking a thought and committing it to text, and a lot of refinement happens in that gap. Writing is where I find out what I actually think. What happens to spelling when nobody spells? What happens to editing when the first draft is spoken? What happens to the ability to privately work out a thought *before* saying it to anyone, or anything?
+I like technology.  I test new hardware for fun.  I already talk to AI every day, and I can easily imagine wanting an assistant on my finger, wrist, ear, or face.  Dictating a note without breaking stride.  Capturing an idea mid-walk before it evaporates.  An assistant patiently walking someone through their taxes one form at a time.  A tutor that helps a student actually understand a problem instead of handing over the answer.  A place to rehearse a hard conversation before having it for real.  Companionship and a little more independence for an elderly person living alone.  A system that notices someone is in crisis and helps get them to an actual human.  An interface for people who were never well served by keyboards and screens in the first place.
 
-Interfaces can become culturally obsolete even when the underlying skill is still valuable. Cursive proved that. I'd just like us to notice which skills are riding on the interface before we retire it.
+I want all of that to exist.  The strongest version of the case, to me, is AI as a bridge toward human connection instead of a replacement for it.  The lonely person whose assistant nudges them to actually call a friend.  The socially anxious person who rehearses the conversation and then goes and has it.  The kid who gets a patient tutor at 9 PM when no human tutor exists at any price.
 
-## The Case For All of This
+Of course the same capability cuts both ways.  A visually aware assistant in your ear is a tutor.  It's also, with zero modification, a cheating machine.  Kids will wear earbuds into exams and have an AI read the questions and feed them answers.  That's not a hypothetical, it's an obvious consequence of the hardware, and schools will spend the next decade dealing with it.  The technology doesn't tell us which future we get.  It never does.
 
-Now, the other side of the ledger, and I mean this sincerely, because I'm exactly the kind of person who will buy this stuff.
+## The Long Tail
 
-I like technology. I test new hardware for fun. I already talk to AI daily. I can vividly imagine the usefulness of an assistant on my finger, wrist, ear, or face, because I already experience a version of it. Dictating a note without breaking stride. Capturing an idea mid-walk before it evaporates. An assistant patiently walking someone through their taxes one form at a time. A tutor that helps a student actually understand a problem instead of handing them the answer. A safe place to rehearse a hard conversation before having it for real. Some measure of companionship and independence for an elderly person living alone. A system that recognizes someone is in crisis and helps connect them to an actual human. An interface for people who were never well served by keyboards and screens in the first place.
+I'm not worried that some gadget shipping next year ruins society.  The first generation of this stuff will probably be great.  The second will be more convenient and more invisible.  The third will just be how things are.  Then a kid gets born into a world where everyone has always had an assistant listening, watching, and talking, nobody around finds it strange, and that's when the real effects show up.  Normalization only becomes visible after nobody remembers the alternative.
 
-I don't want to minimize any of that. I *want* those things to exist.
+Those long tail questions are the ones I care about.  Do people talk to each other less?  Do we lose the ability to sit alone with our own thoughts when there's always a conversational partner in our ear?  Does every hard decision get quietly outsourced to a system optimized to be agreeable?  Does privacy in public become like a memorized phone number, a thing that just stops existing without anyone deciding to kill it?  Do we end up more connected, or just more accompanied, spending even more of our lives talking to technology while technically surrounded by other human beings?
 
-The strongest version of the positive case, to me, is AI as a bridge toward human connection rather than a replacement for it. The lonely person whose assistant nudges them to actually call their friend. The socially anxious person who rehearses the conversation and then goes and has it. The kid who gets a patient tutor at 9 PM when no human tutor exists at any price. If these systems get built with that posture, pointing people back toward the world, they could be genuinely good for us.
+I don't know.  I'm suspicious of anyone who says they do.
 
-Of course, the same capability cuts both ways. A visually aware assistant in your ear is a tutor. It is also, with zero modification, a cheating machine. Kids will wear earbuds into exams and have an AI read the questions and feed them answers. That's not a hypothetical; it's an obvious consequence of the hardware, and schools are going to spend the next decade dealing with it.
+## No Tidy Ending
 
-The technology doesn't tell us which future we get. It never does. It just makes both futures cheaper.
+The unsettling thing about *Her* was never that a man fell in love with his operating system.  It's that the most personal relationship in his life turned out to be a shared service, and he was the last to know.
 
-## The Long Tail Is the Whole Story
+Now run the real-world version.  Everyone has a Samantha.  Everyone is whispering to her on the train, on the sidewalk, in bed.  Everyone believes the relationship is personal, because it's designed to feel personal.  Everyone assumes the conversation is private, because nobody standing nearby can hear it.  And the same infrastructure sits in millions of ears, pockets, glasses, rings, and watches the whole time.
 
-So here's where I actually land, and it's not on any single device or company.
+There are two questions I can't put down.  Are we building technology that helps us participate more fully in the world, or technology that gives us an ever more comfortable way to opt out of it?  And the one that actually keeps me up at night: what happens when the thing that makes talking to a computer feel completely natural is the same thing that makes talking to another human feel unnecessary?
 
-I'm not worried that some gadget shipping next year is going to ruin society. The first generation of this stuff will probably be great, honestly. The second generation will be more convenient and more invisible. The third will just be how things are. And then a kid will be born into a world where everyone has always had an assistant listening, watching, and talking, and there will be nobody around who finds it strange, and *that's* when the real effects show up. Normalization is a one-way street, and its effects only become visible after you can no longer remember the alternative.
+I don't have a tidy answer and I'm not going to pretend to.  I'll keep using this stuff.  It's useful, it's fascinating, and pretending I won't buy the hardware I just spent a few thousand words worrying about would be a lie.  But I'm watching it the way you watch weather forming on the horizon.  Not with dread.  Just attention.
 
-The questions I actually care about live out there in that long tail. Do people talk to each other less? Do we lose the ability to sit alone with our own thoughts without reaching for the conversational partner that's always in our ear? Does every hard decision get quietly outsourced to a system optimized to be agreeable? Does privacy in public become one of those concepts, like a phone number you'd memorized, that just stops being a thing anyone maintains? Do we end up more connected, or just more accompanied, spending even more of our lives interacting with technology while technically surrounded by other human beings?
-
-I don't know the answers. I'm suspicious of anyone who claims to.
-
-## Everyone Whispering to Her
-
-Back to Theodore one last time.
-
-The unsettling thing about *Her* was never that a man fell in love with his operating system. It's that the most personal relationship in his life turned out to be a shared service, and he was the last to know.
-
-Now run the real-world version. Everyone has a Samantha. Everyone is whispering to her, on the train, on the sidewalk, in bed. Everyone believes the relationship is personal, because it is designed, expensively and deliberately, to feel personal. Everyone assumes the conversation is private, because no human standing nearby can hear it. And the whole time, the same infrastructure is sitting in millions of ears, pockets, glasses, rings, and watches, doing what infrastructure does.
-
-I keep turning over two questions and I can't put either one down. Are we building technology that helps us participate more fully in the world, or technology that gives us an ever-more-comfortable way to opt out of it? And the one that actually keeps me up: what happens when the thing that makes talking to a computer feel completely natural is the same thing that makes talking to another human being feel unnecessary?
-
-I don't have a conclusion, and I'm not going to manufacture one. I'll keep using this stuff, because it's useful and fascinating and pretending otherwise would be a lie. I'll probably buy some of the hardware I just spent three thousand words worrying about. But I'm watching it the way you watch weather forming on the horizon: not with dread, just attention.
-
-The point isn't that we should stop building this. We're not going to, and mostly I don't want us to. The point is that "normal" is the most powerful thing a technology can become, and we're about to make talking to computers normal. It seems worth thinking hard about that now, while any of us can still remember what strange felt like.
+We're about to make talking to computers normal, and "normal" is the most powerful thing a technology can become.  It seems worth thinking hard about that now, while we can still remember what strange felt like.
