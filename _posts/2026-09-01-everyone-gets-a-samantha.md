@@ -2,12 +2,12 @@
 layout: post
 title: "Everyone Gets a Samantha"
 subtitle: "On voice interfaces, ambient AI, and what happens when talking to computers becomes normal"
-date: 2026-08-31
+date: 2026-09-01
 ---
 
 There's a scene early in *Her* where Theodore is just walking around the city, talking to Samantha through a little earpiece. He's not hunched over a screen. He's not typing. He's having a conversation with his computer while the world goes by, and nobody around him thinks it's strange.
 
-When the movie came out in 2013, that read as gentle science fiction. Watching it now, it reads more like a product roadmap. There's even a detail that's aging in an interesting way: Theodore has to carry a separate handheld device with a camera so Samantha can see what he sees. At one point he pins it to his shirt pocket so she can look out at the world with him [VERIFY: exact scene details]. That felt clever at the time. Today it feels quaint, because the whole trajectory of consumer hardware is to collapse that distinction. The camera, the microphone, the speaker, the assistant, and the connection are all converging into things we already wear.
+When the movie came out in 2013, that read as gentle science fiction. Watching it now, it reads more like a product roadmap. There's even a detail that's aging in an interesting way: Theodore has to carry a separate handheld device with a camera so Samantha can see what he sees. At one point he pins it into his shirt pocket, camera peeking out, so she can look at the world with him. That felt clever at the time. Today it feels quaint, because the whole trajectory of consumer hardware is to collapse that distinction. The camera, the microphone, the speaker, the assistant, and the connection are all converging into things we already wear.
 
 Honestly, the only part of *Her* that still feels genuinely futuristic is the high-waisted pants.
 
@@ -77,7 +77,7 @@ So the question isn't really "will my AI assistant spy on me?" The bigger questi
 
 There's a detail in all this that I find weirdly fascinating: the whisper.
 
-The companies building this stuff understand the coffee shop problem. Nobody wants to loudly discuss their medical symptoms with an AI on the train. So there's real engineering effort going into letting you speak quietly enough that the people around you can't hear you, while the device still can [VERIFY: current state of quiet-speech input work before citing anything specific].
+The companies building this stuff understand the coffee shop problem. Nobody wants to loudly discuss their medical symptoms with an AI on the train. So there's real engineering effort going into microphones and interfaces that let you speak quietly enough that the people around you can't hear you, while the device still can.
 
 On the surface that's a privacy feature, and a considerate one. But sit with it for a second and it's a strange inversion. Historically, we speak quietly in public because we don't trust the strangers around us with what we're saying. The whisper is a technology for keeping information inside a small circle of people we've chosen.
 
